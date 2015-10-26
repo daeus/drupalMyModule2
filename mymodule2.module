@@ -1,0 +1,41 @@
+<?php
+/**
+ * @file
+ * Code for the My Module feature.
+ */
+
+include_once 'mymodule2.features.inc';
+
+/**
+ * Define the content type.
+ */
+define('MYMODULE2_TYPE', 'supporter');
+
+/**
+ * Implements hook_menu().
+ */
+function mymodule2_menu() {
+  $items = array();
+
+  $items['admin/mymodule2/config'] = array(
+    'title' => 'My Module 2',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('mymodule2_settings_form'),
+    'file' => 'mymodule2.admin.inc',
+    'access arguments' => array('administer mymodule2'),
+  );
+
+  return $items;
+}
+
+/**
+ * Implements hook_permision().
+ */
+function mymodule2_permission() {
+  return array(
+    'administer mymodule2' => array(
+      'titile' => t('Administer My Module 2'),
+      'escription' => t('Perform administration tasks for contact people information.'),
+    ),
+  );
+}
